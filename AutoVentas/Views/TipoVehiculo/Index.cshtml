@@ -1,0 +1,42 @@
+﻿@model IEnumerable<AutoVentas.Models.TipoVehiculo>
+
+@{
+    ViewBag.Title = "Tipos de Vehiculos";
+}
+
+<h2>Tipos de Vehiculos Registrados</h2>
+<br />
+<p>
+    @Html.ActionLink("Registrar un Tipo de Vehiculo", "Create", "TipoVehiculo", new { @class = "btn btn-primary" })
+</p>
+<br />
+@using (Html.BeginForm())
+{
+    <p>
+        Buscar:@Html.TextBox("filtro")
+        <input type="submit" value="Buscar" />
+    </p>
+    <br />
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.IDTipoVehiculo }, new { @class = "btn btn-success" }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.IDTipoVehiculo }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.IDTipoVehiculo }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<AutoVentas.Models.Marca>
+
+@{
+    ViewBag.Title = "Marcas";
+}
+
+<h2>Marcas Registradas</h2>
+<br />
+<p>
+    @Html.ActionLink("Registrar a una marca", "Create", "Marca", new { @class = "btn btn-primary btn-flat"})
+</p>
+<br />
+@using (Html.BeginForm())
+{
+    <p>
+        Buscar:@Html.TextBox("filtro")
+        <input type="submit" value="Buscar" />
+    </p>
+    <br />
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.IDMarca }, new { @class = "btn btn-success btn-flat" }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.IDMarca }, new { @class = "btn btn-primary btn-flat" }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.IDMarca }, new { @class = "btn btn-danger btn-flat" })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<AutoVentas.Models.Vehiculo>
+
+@{
+    ViewBag.Title = "Inicio";
+}
+
+<!-- Start Page Banner -->
+<div class="page-banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Catalogo</h2>
+                <p>Vehiculos Registrados</p>
+            </div>
+            <div class="col-md-6">
+                <ul class="breadcrumbs">
+                    <li><a>Catalogo</a></li>
+                    <li>Inicio</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Banner -->
+<!-- Start Content -->
+<div id="content">
+    <div class="container">
+        <div class="row portfolio-page">
+            @using (Html.BeginForm())
+            {
+                <p>
+                    Buscar por Nombre, Marca, Modelo, Tipo de Vehiculo y Tipo de Combustible:@Html.TextBox("filtro")
+                    <input type="submit" value="Buscar" />
+                </p>
+    <br />
+            }
+            <!-- Start Recent Projects Carousel -->
+            <ul id="portfolio-list" data-animated="fadeIn">
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <img src="~/Archivo/ObtenerArchivo?id=@item.Archivos.FirstOrDefault().IDArchivo" alt="Imagen"
+                             style="max-height: 250px; max-width: 400px; min-width: 400px; min-height: 250px;" />
+                        <div class="portfolio-item-content">
+                            <span class="header">@item.Nombre</span>
+                            <p class="body">Marca: @item.Marca.Nombre,
+                            Modelo: @item.Modelo,
+                            Precio: @item.Precio,
+                            Tipo de Combustible: @item.TipoCombustible.Nombre,
+                            Tipo de Vehiculo: @item.TipoVehiculo.Nombre</p>
+                        </div>
+                        <a href="~/Catalogo/Detalles?id=@item.IDVehiculo"><i class="more">+</i></a>
+                    </li>
+                }
+            </ul>
+            <!-- End Portfolio Items -->
+
+        </div>
+    </div>
+</div>
+<!-- End Content -->
+

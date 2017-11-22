@@ -1,0 +1,64 @@
+﻿@model AutoVentas.Models.Reservacion
+
+@{
+    ViewBag.Title = "Vender";
+}
+
+<h2>Confirmar Venta</h2>
+
+<div>
+    <h4>Informacion de la reserva</h4>
+    <hr />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <dl class="dl-horizontal">
+        <dt>
+            Forma de Pago
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FormaDePago.Nombre)
+        </dd>
+
+        <dt>
+            Nombre del Reservante
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Nombre)
+        </dd>
+
+        <dt>
+            Nombre del Vehiculo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vehiculo.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaReserva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaReserva)
+        </dd>
+
+        <dt>
+            NIT:
+        </dt>
+
+        <dd>
+            @Html.TextBox("nit")
+        </dd>
+
+    </dl>
+        <div class="form-actions no-color">
+            <input type="submit" value="Confirmar Venta" class="btn btn-success" /> |
+            @Html.ActionLink("Regresar", "Index", "Reservacion", new { @class = "btn btn-primary" })
+            @Html.ActionLink("Generar PDF", "GenerarReporte", "Reservacion", new { id = Model.IDReservacion}, new { @class = "btn btn-primary" })
+        </div>
+}
+</div>
+

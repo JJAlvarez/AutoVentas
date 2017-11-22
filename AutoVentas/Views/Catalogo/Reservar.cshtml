@@ -1,0 +1,306 @@
+﻿@model AutoVentas.Models.Reservacion
+
+@{
+    ViewBag.Title = "Reservar";
+}
+
+<!-- Start Page Banner -->
+<div class="page-banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Reservar Vehiculo</h2>
+                <p>Reserva del vehiculo</p>
+            </div>
+            <div class="col-md-6">
+                <ul class="breadcrumbs">
+                    <li><a>Catalogo</a></li>
+                    <li><a>Reservar</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Banner -->
+<!-- Start Content -->
+<div id="content">
+    <div class="container">
+        <div class="project-page row">
+
+            <!-- Start Single Project Slider -->
+            <div class="project-media col-md-8">
+                <div class="touch-slider project-slider">
+                    <div class="item">
+                        <a class="lightbox" title="This is an image title" href="~/Archivo/ObtenerArchivo?id=@Model.Vehiculo.Archivos.FirstOrDefault().IDArchivo" data-lightbox-gallery="gallery2">
+                            <div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>
+                            <img alt="" src="~/Archivo/ObtenerArchivo?id=@Model.Vehiculo.Archivos.FirstOrDefault().IDArchivo" style="width:100%;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- End Single Project Slider -->
+            <!-- Start Project Content -->
+            <div class="project-content col-md-4">
+                <h4><span>Descripcion</span></h4>
+                <p>@Model.Vehiculo.Descripcion</p>
+                <h4><span>Detalles del Vehiculo</span></h4>
+                <ul>
+                    <li><strong>Marca:</strong> @Model.Vehiculo.Marca.Nombre</li>
+                    <li><strong>Modelo:</strong> @Model.Vehiculo.Modelo</li>
+                    <li><strong>Precio:</strong> @Model.Vehiculo.Precio</li>
+                    <li><strong>Estado:</strong> @Model.Vehiculo.Estado</li>
+                    <li><strong>Tipo de Combustible:</strong> @Model.Vehiculo.TipoCombustible.Nombre</li>
+                    <li><strong>Tipo de Vehiculo:</strong> @Model.Vehiculo.TipoVehiculo.Nombre</li>
+                    @if (@Model.Vehiculo.Estado.Equals("Disponible"))
+                    {
+                        using (Html.BeginForm())
+                        {
+                            <li>
+                                <strong>@Html.DropDownList("IDFormaDePago", null, htmlAttributes: new { @class = "form-control" })</strong>
+                                @Html.ValidationMessageFor(model => model.IDFormaDePago, "", new { @class = "text-danger" })
+                            </li>
+                            @Html.HiddenFor(model => model.IDVehiculo)
+                            @Html.HiddenFor(model => model.IDUsuario)
+                            <li>
+                                <strong>Confirmar Reservacion:</strong>
+                                <input type="submit" value="Reservar" class="btn btn-success" />
+                            </li>
+                        }
+                    }
+                    @if (ViewBag.reservacion != null)
+                    {
+                        <li class="alert-success">
+                            @ViewBag.reservacion
+                        </li>
+                    }
+                </ul>
+            </div>
+            <!-- End Project Content -->
+
+        </div>
+
+        <!-- Start Recent Projects Carousel -->
+        <div class="recent-projects">
+            <h4 class="title"><span>Recent Projects</span></h4>
+            <div class="projects-carousel touch-carousel">
+
+                <div class="portfolio-item item">
+                    <div class="portfolio-border">
+                        <div class="portfolio-thumb">
+                            <a class="lightbox" data-lightbox-type="ajax" href="https://vimeo.com/78468485">
+                                <div class="thumb-overlay"><i class="fa fa-play"></i></div>
+                                <img alt="" src="images/portfolio-1/1.png" />
+                            </a>
+                        </div>
+                        <div class="portfolio-details">
+                            <a href="#">
+                                <h4>Lorem Ipsum Dolor</h4>
+                                <span>Website</span>
+                                <span>Drawing</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item item">
+                    <div class="portfolio-border">
+                        <div class="portfolio-thumb">
+                            <a class="lightbox" title="This is an image title" href="images/portfolio-big-01.jpg">
+                                <div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>
+                                <img alt="" src="images/portfolio-1/2.png" />
+                            </a>
+                        </div>
+                        <div class="portfolio-details">
+                            <a href="#">
+                                <h4>Lorem Ipsum Dolor</h4>
+                                <span>Logo</span>
+                                <span>Animation</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item item">
+                    <div class="portfolio-border">
+                        <div class="portfolio-thumb">
+                            <a href="#">
+                                <div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>
+                                <img alt="" src="images/portfolio-1/3.png" />
+                            </a>
+                        </div>
+                        <div class="portfolio-details">
+                            <a href="#">
+                                <h4>Lorem Ipsum Dolor</h4>
+                                <span>Drawing</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item item">
+                    <div class="portfolio-border">
+                        <div class="portfolio-thumb">
+                            <a href="#">
+                                <div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>
+                                <img alt="" src="images/portfolio-1/4.png" />
+                            </a>
+                        </div>
+                        <div class="portfolio-details">
+                            <a href="#">
+                                <h4>Lorem Ipsum Dolor</h4>
+                                <span>Website</span>
+                                <span>Ilustration</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item item">
+                    <div class="portfolio-border">
+                        <div class="portfolio-thumb">
+                            <a class="lightbox" title="This is an image title" href="images/portfolio-big-02.jpg">
+                                <div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>
+                                <img alt="" src="images/portfolio-1/5.png" />
+                            </a>
+                        </div>
+                        <div class="portfolio-details">
+                            <a href="#">
+                                <h4>Lorem Ipsum Dolor</h4>
+                                <span>Logo</span>
+                                <span>Drawing</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item item">
+                    <div class="portfolio-border">
+                        <div class="portfolio-thumb">
+                            <a href="#">
+                                <div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>
+                                <img alt="" src="images/portfolio-1/6.png" />
+                            </a>
+                        </div>
+                        <div class="portfolio-details">
+                            <a href="#">
+                                <h4>Lorem Ipsum Dolor</h4>
+                                <span>Animation</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item item">
+                    <div class="portfolio-border">
+                        <div class="portfolio-thumb">
+                            <a class="lightbox" title="This is an image title" href="images/portfolio-big-03.jpg">
+                                <div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>
+                                <img alt="" src="images/portfolio-1/7.png" />
+                            </a>
+                        </div>
+                        <div class="portfolio-details">
+                            <a href="#">
+                                <h4>Lorem Ipsum Dolor</h4>
+                                <span>Website</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item item">
+                    <div class="portfolio-border">
+                        <div class="portfolio-thumb">
+                            <a href="#">
+                                <div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>
+                                <img alt="" src="images/portfolio-1/8.png" />
+                            </a>
+                        </div>
+                        <div class="portfolio-details">
+                            <a href="#">
+                                <h4>Lorem Ipsum Dolor</h4>
+                                <span>Ilustration</span>
+                                <span>Animation</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item item">
+                    <div class="portfolio-border">
+                        <div class="portfolio-thumb">
+                            <a href="#">
+                                <div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>
+                                <img alt="" src="images/portfolio-1/9.png" />
+                            </a>
+                        </div>
+                        <div class="portfolio-details">
+                            <a href="#">
+                                <h4>Lorem Ipsum Dolor</h4>
+                                <span>Ilustration</span>
+                                <span>Animation</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item item">
+                    <div class="portfolio-border">
+                        <div class="portfolio-thumb">
+                            <a href="#">
+                                <div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>
+                                <img alt="" src="images/portfolio-1/10.png" />
+                            </a>
+                        </div>
+                        <div class="portfolio-details">
+                            <a href="#">
+                                <h4>Lorem Ipsum Dolor</h4>
+                                <span>Ilustration</span>
+                                <span>Animation</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item item">
+                    <div class="portfolio-border">
+                        <div class="portfolio-thumb">
+                            <a href="#">
+                                <div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>
+                                <img alt="" src="images/portfolio-1/11.png" />
+                            </a>
+                        </div>
+                        <div class="portfolio-details">
+                            <a href="#">
+                                <h4>Lorem Ipsum Dolor</h4>
+                                <span>Ilustration</span>
+                                <span>Animation</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item item">
+                    <div class="portfolio-border">
+                        <div class="portfolio-thumb">
+                            <a href="#">
+                                <div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>
+                                <img alt="" src="images/portfolio-1/12.png" />
+                            </a>
+                        </div>
+                        <div class="portfolio-details">
+                            <a href="#">
+                                <h4>Lorem Ipsum Dolor</h4>
+                                <span>Ilustration</span>
+                                <span>Animation</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- End Recent Projects Carousel -->
+
+    </div>
+</div>
+<!-- End Content -->

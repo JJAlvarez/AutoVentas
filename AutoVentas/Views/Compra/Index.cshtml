@@ -1,0 +1,78 @@
+﻿@model IEnumerable<AutoVentas.Models.ComprasRealizadas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Compras Realizadas</h2>
+@using (Html.BeginForm("Index", "Compra"))
+{
+    <div class="row text-center" id="filtro">
+        <label id="fitroContenido"><strong>Filtrar por rango de Fechas</strong></label>
+        <div class="form col-md-15">
+            <label id="fechas">Fecha Inicio</label>
+            <input type="date" name="fechaInicio" />
+            <label id="fechas">Fecha Final</label>
+            <input type="date" name="fechaFinal" />
+            <input id="btnFiltro" type="submit" value="Buscar" class="btn btn-sm btn-danger">
+        </div>
+    </div>
+}
+<table class="table">
+    <tr>
+        <th>
+            Nombre del Vehiculo
+        </th>
+        <th>
+            Marca
+        </th>
+        <th>
+            Modelo
+        </th>
+        <th>
+            Precio
+        </th>
+        <th>
+            Tipo de Vehiculo
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaCompra)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vehiculo.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vehiculo.Marca.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vehiculo.Modelo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vehiculo.Precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vehiculo.TipoVehiculo.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaCompra)
+        </td>
+    </tr>
+}
+
+</table>
+
+@using (Html.BeginForm("GenerarReporte", "Compra"))
+{
+    <div class="row text-center">
+        <div class="col-md-15">
+            <input type="submit" value="Generar PDF" class="btn btn-sm btn-danger">
+            <input type="hidden" value="@ViewBag.fechaInicio" name="fechaInicio">
+            <input type="hidden" value="@ViewBag.fechaFinal" name="fechaFinal">
+        </div>
+    </div>
+}

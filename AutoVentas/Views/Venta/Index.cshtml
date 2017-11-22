@@ -1,0 +1,71 @@
+﻿@model IEnumerable<AutoVentas.Models.VentasRealizadas>
+
+@{
+    ViewBag.Title = "Ventas Realizadas";
+}
+
+<h2>Ventas Realizadas</h2>
+
+<br />
+
+@using (Html.BeginForm("Index","Venta"))
+{
+<div class="row text-center" id="filtro">
+    <label id="fitroContenido"><strong>Filtrar por rango de Fechas</strong></label>
+    <div class="form col-md-15">
+        <label id="fechas">Fecha Inicio</label>
+        <input type="date" name="fechaInicio" />
+        <label id="fechas">Fecha Final</label>
+        <input type="date" name="fechaFinal" />
+        <input id="btnFiltro" type="submit" value="Buscar" class="btn btn-sm btn-danger">
+    </div>
+</div>
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FormaDePago.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vehiculo.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaVenta)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FormaDePago.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vehiculo.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaVenta)
+        </td>
+    </tr>
+}
+
+</table>
+
+@using (Html.BeginForm("GenerarReporte", "Venta"))
+        {
+        <div class="row text-center">
+            <div class="col-md-15">
+                <input type="submit" value="Generar PDF" class="btn btn-sm btn-danger">
+                <input type="hidden" value="@ViewBag.fechaInicio" name="fechaInicio">
+                <input type="hidden" value="@ViewBag.fechaFinal" name="fechaFinal">
+            </div>
+        </div>
+        }

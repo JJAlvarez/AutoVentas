@@ -1,0 +1,90 @@
+﻿@model AutoVentas.Models.Vehiculo
+
+@{
+    ViewBag.Title = "Detalles del vehiculo";
+}
+
+<h2>Detalles del Vehiculo</h2>
+
+<div>
+    <h4>Informacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Nombre
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            Marca
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marca.Nombre)
+        </dd>
+
+        <dt>
+            Tipo de Combustible
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoCombustible.Nombre)
+        </dd>
+
+        <dt>
+            Tipo de Vehiculo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoVehiculo.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            Imagen
+        </dt>
+        <dd>
+            <img src="~/Archivo/ObtenerArchivo?id=@Model.Archivos.FirstOrDefault().IDArchivo" alt="Imagen"
+                 style="max-height: 200px; max-width: 200px; min-height: 200px; min-width: 200px;" />
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IDVehiculo }, new { @class = "btn btn-success" }) |
+    @Html.ActionLink("Regresar", "Index", "Vehiculo", new { @class = "btn btn-primary" })
+</p>

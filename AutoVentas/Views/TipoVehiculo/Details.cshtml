@@ -1,0 +1,26 @@
+﻿@model AutoVentas.Models.TipoVehiculo
+
+@{
+    ViewBag.Title = "Detalles del Tipo de Vehiculo";
+}
+
+<h2>Detalles del Tipo de Vehiculo</h2>
+
+<div>
+    <h4>Informacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IDTipoVehiculo }, new { @class = "btn btn-success" }) |
+    @Html.ActionLink("Regresar", "Index", "TipoVehiculo", new { @class = "btn btn-primary" })
+</p>

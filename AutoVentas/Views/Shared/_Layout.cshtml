@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - AutoVenetas Kars</title>
+    @Styles.Render("~/Content/css") 
+    @Scripts.Render("~/bundles/scriptsnecesarios")
+</head>
+<body>
+    <div id="container">
+        <!-- Start Header -->
+        <div class="hidden-header"></div>
+        <header class="clearfix">
+            <!-- Start Header ( Logo & Naviagtion ) -->
+            <div class="navbar navbar-default navbar-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <!-- Stat Toggle Nav Link For Mobiles -->
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <i class="fa fa-bars"></i> </button>
+                        <!-- End Toggle Nav Link For Mobiles -->
+                        @if (Session["IDUsuario"] == null)
+                        {
+                            <h2 class="navbar-brand">@Html.ActionLink("AUTOVENTAS KARS", "Inicio", "Cliente")</h2>
+                        }
+                        else if (Session["IDUsuario"] != null && Session["IDRol"].Equals(1))
+                        {
+                            <h2 class="navbar-brand">@Html.ActionLink("AUTOVENTAS KARS", "Index", "Home")</h2>
+                        }
+                        else if (Session["IDUsuario"] != null && Session["IDRol"].Equals(2))
+                        {
+                            <h2 class="navbar-brand">@Html.ActionLink("AUTOVENTAS KARS", "Inicio", "Cliente")</h2>
+                        }
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <!-- Start Navigation List -->
+                        @if (Session["IDUsuario"] != null && Session["IDRol"].Equals(1))
+                        {
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    @Html.ActionLink("Inicio", "Index", "Home")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Catalogo", "Inicio", "Catalogo")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Vehiculos", "Index", "Vehiculo")
+                                    <ul>
+                                        <li>
+                                            @Html.ActionLink("Tipos de Vehiculos", "Index", "TipoVehiculo")
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Tipos de Combustible", "Index", "TipoCombustible")
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Marcas", "Index", "Marca")
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Ventas", "Index", "Venta")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Compras", "Index", "Compra")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Reservaciones", "Index", "Reservacion")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Usuarios", "Index", "Usuario")
+                                </li>
+                                <li>
+                                    <a>@Session["Username"]</a>
+                                    <ul class="dropdown">
+                                        <li>
+                                            <a href="~/Cuenta/Logout">Cerrar Sesion</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        }
+                        else if (Session["IDUsuario"] != null && Session["IDRol"].Equals(2))
+                        {
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    @Html.ActionLink("Catalogo", "Inicio", "Catalogo")
+                                <li>
+                                <li>
+                                    @Html.ActionLink("Mis Reservas", "Index", "MisReservas")
+                                <li>
+                                    <a>@Session["Username"]</a>
+                                    <ul class="dropdown">
+                                        <li>
+                                            <a href="~/Cuenta/Logout">Cerrar Sesion</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    @Html.ActionLink("Catalogo", "Inicio", "Catalogo")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Iniciar Sesion", "Iniciar", "Cuenta")
+                                </li>
+                            </ul>
+                        }                                
+                    </div>
+                </div>
+            </div>
+            <!-- End Header ( Logo & Naviagtion ) -->
+        </header>
+        <!-- End Header -->
+        <div class="containers body-content">
+            @RenderBody()
+            <hr />
+
+        </div>
+
+        <!-- Start Footer -->
+        <footer>
+            <div class="container"> 
+                <!-- Start Copyright -->
+                <div class="copyright-section">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>&copy; 2014 Margo - All Rights Reserved</p>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="footer-nav">
+                                <li><a href="#">Sitemap</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Copyright -->
+
+            </div>
+        </footer>
+    </div>
+        <!-- End Footer -->
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/funciones")
+        @RenderSection("scripts", required: false)
+
+</body>
+</html>

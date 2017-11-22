@@ -1,0 +1,87 @@
+﻿@model AutoVentas.Models.Vehiculo
+
+@{
+    ViewBag.Title = "Eliminar Vehiculo";
+}
+
+<h2>Eliminar Vehiculo</h2>
+
+<h3 class="text-danger">Estas seguro que deseas eliminar este vehiculo permanemtemente?</h3>
+<div>
+    <h4>Informacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Imagen
+        </dt>
+        <dd>
+            <img src="~/Archivo/ObtenerArchivo?id=@Model.Archivos.FirstOrDefault().IDArchivo" alt="Imagen"
+                 style="max-height: 200px; max-width: 200px; min-height: 200px; min-width: 200px;" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Marca.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marca.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoCombustible.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoCombustible.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoVehiculo.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoVehiculo.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Regresar", "Index", "Vehiculo", new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<AutoVentas.Models.TipoCombustible>
+
+@{
+    ViewBag.Title = "Tipos de Combustible";
+}
+
+<h2>Tipos de Combustible Registrados</h2>
+<br />
+<p>
+    @Html.ActionLink("Registrar un Tipo de Combustible", "Create", "TipoCombustible", new { @class = "btn btn-primary" })
+</p>
+<br />
+@using (Html.BeginForm())
+{
+    <p>
+        Buscar:@Html.TextBox("filtro")
+        <input type="submit" value="Buscar" />
+    </p>
+    <br />
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.IDTipoCombustible }, new { @class = "btn btn-success" }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.IDTipoCombustible }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.IDTipoCombustible }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

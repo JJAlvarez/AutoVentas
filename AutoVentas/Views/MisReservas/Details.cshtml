@@ -1,0 +1,49 @@
+﻿@model AutoVentas.Models.Reservacion
+
+@{
+    ViewBag.Title = "Detalles de la reservacion";
+}
+
+<h2>Detalles de la reservacion</h2>
+
+<div>
+    <h4>Informacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Forma de Pago
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FormaDePago.Nombre)
+        </dd>
+
+        <dt>
+            Nombre del Reservante
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Nombre)
+        </dd>
+
+        <dt>
+            Nombre del Vehiculo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vehiculo.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaReserva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaReserva)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Regresar", "Index", "Reservacion", new { @class = "btn btn-primary" })
+</p>

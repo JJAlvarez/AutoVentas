@@ -1,0 +1,79 @@
+﻿@model IEnumerable<AutoVentas.Models.Vehiculo>
+
+@{
+    ViewBag.Title = "Vehiculos Registrados";
+}
+
+<h2>Vehiculos Registrados</h2>
+<br />
+
+<p>
+    @Html.ActionLink("Registrar un Vehiculo", "Create", "Vehiculo", new { @class = "btn btn-primary" })
+</p>
+<br />
+@using (Html.BeginForm())
+{
+    <p>
+        Buscar por Nombre, Marca, Modelo, Tipo de Vehiculo y Tipo de Combustible:@Html.TextBox("filtro")
+        <input type="submit" value="Buscar" />
+    </p>
+    <br />
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            Marca
+        </th>
+        <th>
+            Tipo de Combustible
+        </th>
+        <th>
+            Tipo de Vehiculo
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Marca.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoCombustible.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoVehiculo.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modelo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IDVehiculo }, new { @class = "btn btn-success" }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.IDVehiculo }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.IDVehiculo }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>
